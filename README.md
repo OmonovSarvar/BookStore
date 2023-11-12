@@ -25,7 +25,9 @@ This project is a simple Book Store built using django rest framework
 ### only POST request http://127.0.0.1:8000/api/reset - Endpoint to reset the password for those who have forgotten it
 ### only GET request http://127.0.0.1:8000/api/subscribe - To subscribe to a blog post
 ### only GET request http://127.0.0.1:8000/api/search/?search=<title> - search Books by the given title
-### only GET request http://127.0.0.1:8000/api/schema/swagger - Show schemes
+### only GET request http://127.0.0.1:8000/api/schema - Show schemes
+### only GET request http://127.0.0.1:8000/api/schema/swagger - Swagger of the project
+### GET POST PUT request http://127.0.0.1:8000/api/token/auth - Gives you bareer token for authentication
 
 
 
