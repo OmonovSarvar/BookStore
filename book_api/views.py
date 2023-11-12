@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 from rest_framework.views import APIView
 from django.contrib.auth.admin import User
+from rest_framework import filters
 
 from book_api.models import BookStoreModel, SubscribersModel
 from book_api.serializers import BookStoreSerializer, UserSerializer, SubscribersSerializer
