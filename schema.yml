@@ -1,0 +1,429 @@
+openapi: 3.0.3
+info:
+  title: 'Django Rest Framework Book Store '
+  version: 0.0.0
+paths:
+  /api/:
+    get:
+      operationId: api_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookStore'
+          description: ''
+  /api/{id}:
+    get:
+      operationId: api_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookStore'
+          description: ''
+  /api/{id}/delete:
+    delete:
+      operationId: api_delete_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/{id}/update:
+    put:
+      operationId: api_update_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookStore'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BookStore'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BookStore'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookStore'
+          description: ''
+    patch:
+      operationId: api_update_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedBookStore'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedBookStore'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedBookStore'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookStore'
+          description: ''
+  /api/{username}:
+    get:
+      operationId: api_list_2
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookStore'
+          description: ''
+  /api/all:
+    get:
+      operationId: api_all_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookStore'
+          description: ''
+  /api/login:
+    post:
+      operationId: api_login_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/new:
+    post:
+      operationId: api_new_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookStore'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BookStore'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BookStore'
+        required: true
+      security:
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookStore'
+          description: ''
+  /api/signup:
+    post:
+      operationId: api_signup_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/subscribe:
+    post:
+      operationId: api_subscribe_create
+      description: Subscribe view .
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscribers'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Subscribers'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Subscribers'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscribers'
+          description: ''
+  /api/token/auth:
+    post:
+      operationId: api_token_auth_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+          description: ''
+components:
+  schemas:
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+      - password
+      - token
+      - username
+    BookStore:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 55
+        photo:
+          type: string
+          format: uri
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        is_available:
+          type: boolean
+        published:
+          type: string
+          format: date-time
+        ISO:
+          type: string
+          maxLength: 50
+        user:
+          type: integer
+      required:
+      - ISO
+      - category
+      - id
+      - is_available
+      - photo
+      - published
+      - title
+      - user
+    CategoryEnum:
+      enum:
+      - Fiction
+      - Romance
+      - Mystery
+      - Fantasy
+      - Horror
+      - Science fiction
+      - History
+      - Thriller
+      - Comics
+      type: string
+      description: |-
+        * `Fiction` - Fiction
+        * `Romance` - Romance
+        * `Mystery` - Mystery
+        * `Fantasy` - Fantasy
+        * `Horror` - Horror
+        * `Science fiction` - Science fiction
+        * `History` - History
+        * `Thriller` - Thriller
+        * `Comics` - Comics
+    PatchedBookStore:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 55
+        photo:
+          type: string
+          format: uri
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        is_available:
+          type: boolean
+        published:
+          type: string
+          format: date-time
+        ISO:
+          type: string
+          maxLength: 50
+        user:
+          type: integer
+    Subscribers:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          maxLength: 60
+      required:
+      - email
+      - id
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        password:
+          type: string
+          maxLength: 128
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+      required:
+      - id
+      - password
+      - username
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
